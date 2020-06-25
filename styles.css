@@ -1,0 +1,22 @@
+h1 {
+  text-align: center;
+}
+
+.game-container {
+  margin: 0 auto;
+  width: 400px;
+  height: 75px;
+  background-color: #7fa8eb;
+}
+
+.buttons {
+  margin: 0 auto;
+  width: 300px;
+  height: auto;
+  padding: 20px;
+}
+
+#reset {
+
+  background-color: yellow;
+}
