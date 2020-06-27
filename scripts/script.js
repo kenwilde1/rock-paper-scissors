@@ -31,46 +31,61 @@ function game(playerSelection) {
   const results = playRound(playerSelection, computerSelection);
   return(results);
 }
-
 let playerScore = 0;
 let computerScore = 0;
-let gameFinished = false;
 
 // buttons is a node list. It looks and acts much like an array.
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.start-game');
+const resultsDiv = document.createElement('div');
+resultsDiv.classList.add('results-container');
 buttons.forEach(btn => btn.addEventListener('click', (e) => {
   playerSelection = btn.id;
 
   const container = document.querySelector('.game-container');
-  const results = document.createElement('div');
+  const body = document.querySelector('body');
+  resultsDiv.innerHTML = `<span>Player Score: ${playerScore} - Computer Score: ${computerScore}</span>`;
+
 
   result = game(playerSelection);
 
   if (result.slice(0,7) == `You Win`) {
     playerScore++;
-    console.log(playerScore);
+    alert(result);
+    console.log(`Player Score: ${playerScore} - Computer Score: ${computerScore}`);
+
+    if (playerScore == 5) {
+      alert("Game Over! You won, you reached 5 points.")
+      playerScore=0;
+      computerScore=0;
+    }
+
+    resultsDiv.innerHTML = `<span>Player Score: ${playerScore} - Computer Score: ${computerScore}</span>`;
+    body.appendChild(resultsDiv);
   }else{
     computerScore++;
-    console.log(computerScore);
-  };
-  if (playerScore == 5 && !gameFinished) {
-    results.classList.add('game-container');
-    container.appendChild(results);
-    results.innerHTML = `<span>You won best of 5! Your score: ${playerScore} Computer's Score ${computerScore}</span>`;
-    gameFinished = true;
-  }else if (computerScore == 5 && !gameFinished) {
-    results.classList.add('game-container');
-    container.appendChild(results);
-    results.innerHTML = `<span>You lost best of 5! Your score: ${playerScore} Computer's Score ${computerScore}</span>`;
-    gameFinished = true;
+    alert(result);
+    console.log(`Player Score: ${playerScore} - Computer Score: ${computerScore}`);
+
+    if(computerScore == 5) {
+      alert("Game Over! You lost, Computer reached 5 points. ")
+      playerScore=0;
+      computerScore=0;
+    }
+
+    resultsDiv.innerHTML = `<span>Player Score: ${playerScore} - Computer Score: ${computerScore}</span>`;
+    body.appendChild(resultsDiv);
   };
 
 }));
 
 const reset = document.querySelector('#reset');
 reset.addEventListener('click', function() {
-  let playerScore = 0;
-  let computerScore = 0;
-  let gameFinished = false;
-  console.log(`${playerScore}${computerScore}${gameFinished}`)
+
+  playerScore = 0;
+  computerScore = 0;
+  resultsDiv.innerHTML = `<span>Player Score: ${playerScore} - Computer Score: ${computerScore}</span>`;
+  const body = document.querySelector('body');
+  body.appendChild(resultsDiv);
+  console.log("reset");
+
 });

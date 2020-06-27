@@ -9,6 +9,20 @@ h1 {
   background-color: #7fa8eb;
 }
 
+.results-container {
+  margin: 0 auto;
+  margin-top:50px;
+  width: 400px;
+  height: 75px;
+  background-color: #f78157;
+}
+
+span {
+  margin: 0 auto;
+  width: 300px;
+  height: auto;
+}
+
 .buttons {
   margin: 0 auto;
   width: 300px;
@@ -19,4 +33,10 @@ h1 {
 #reset {
 
   background-color: yellow;
+}
+
+button {
+  cursor: pointer;
+  border:1px solid black;
+  border-radius: 5px;
 }
